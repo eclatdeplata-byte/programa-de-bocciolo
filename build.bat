@@ -23,6 +23,10 @@ REM 4) Comando PyInstaller para producción (sin consola)
 REM La base de datos (productos.db) ya no se incluye DENTRO del exe.
 REM Se copiará a la carpeta dist al final.
 pyinstaller --noconfirm --clean --onefile --windowed ^
+  --hidden-import=PyQt5.QtCore ^
+  --hidden-import=PyQt5.QtGui ^
+  --hidden-import=PyQt5.QtWidgets ^
+  --hidden-import=sip ^
   --add-data "logo.png;." ^
   --add-data "bocciolo_style.qss;." ^
   main.py
