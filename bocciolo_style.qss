@@ -1,0 +1,42 @@
+QWidget {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #FCE4EC, stop:1 #F3E5F5);
+    font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+    font-size: 16px;
+    color: #3D155F;
+}
+QPushButton {
+    background-color: #E040FB;
+    color: white;
+    border-radius: 12px;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 6px 0;
+}
+QPushButton#btnFull, QPushButton#btnRestore {
+    background-color: #F3E5F5;
+    color: #D81B9A;
+    font-size: 14px;
+    border-radius: 8px;
+}
+QPushButton:hover {
+    background-color: #8E24AA;
+}
+QTableWidget {
+    background: white;
+    border-radius: 8px;
+    border: 2px solid #E040FB;
+    font-size: 14px;
+}
+QHeaderView::section {
+    background-color: #E040FB;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 6px;
+}
+QLineEdit, QSpinBox, QComboBox {
+    background: white;
+    padding: 6px;
+    border-radius: 6px;
+}

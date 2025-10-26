@@ -1,0 +1,5 @@
+PyQt5>=5.15.9
+pyqtgraph>=0.13.0    # opcional, para gráficos
+pandas>=1.5.0        # opcional, para exportar Excel
+reportlab>=3.6.0     # opcional, para generar PDF estilados
+pyinstaller>=5.1
