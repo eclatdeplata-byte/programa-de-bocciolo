@@ -18,7 +18,7 @@ python -m pip install --upgrade pip
 python -m pip install pyinstaller PyQt5 pyqtgraph
 
 REM 4) Comando PyInstaller usando el archivo .spec
-pyinstaller --noconfirm --clean --onefile main.spec
+pyinstaller --noconfirm --clean main.spec
 
 if %ERRORLEVEL% NEQ 0 (
   echo PyInstaller falló. Revisa la salida arriba para errores.

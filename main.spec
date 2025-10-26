@@ -1,16 +1,21 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-# Este es un archivo de especificaciones de PyInstaller.
-# Define cómo se debe empaquetar la aplicación, dando un control más preciso
-# que los argumentos de línea de comandos.
+from PyInstaller.utils.hooks import collect_all
 
 block_cipher = None
 
+# --- Hook definitivo para PyQt5 ---
+# Este bloque utiliza la función más potente de PyInstaller, `collect_all`,
+# para encontrar y empaquetar de forma exhaustiva todos los componentes de PyQt5,
+# incluyendo binarios, datos y dependencias ocultas como 'sip'.
+datas, binaries, hiddenimports = collect_all('PyQt5')
+# --- Fin del Hook ---
+
 a = Analysis(['main.py'],
              pathex=[],
-             binaries=[],
-             datas=[('logo.png', '.'), ('bocciolo_style.qss', '.')],
-             hiddenimports=['PyQt5.QtCore', 'PyQt5.QtGui', 'PyQt5.QtWidgets', 'sip'],
+             binaries=binaries,
+             datas=[('logo.png', '.'), ('bocciolo_style.qss', '.')] + datas,
+             hiddenimports=hiddenimports,
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -23,16 +28,14 @@ pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 exe = EXE(pyz,
           a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
           [],
-          exclude_binaries=True,
           name='main',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False,  # Equivale a --windowed
-          runtime_tmpdir=None)
-
-# La sentencia COLLECT es para empaquetado en modo de un solo directorio.
-# Para el modo de un solo archivo (--onefile), no es necesaria.
-# El ejecutable (exe) ya contiene todo lo necesario.
+          runtime_tmpdir=None,
+          console=False )
