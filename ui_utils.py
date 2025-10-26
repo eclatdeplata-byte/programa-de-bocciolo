@@ -14,19 +14,13 @@ def get_asset_path(relative_path):
 def get_data_path(relative_path):
     """
     Obtiene la ruta absoluta a un archivo de datos persistente.
-    Para el ejecutable, usa la carpeta AppData del usuario.
+    Para el ejecutable, usa la carpeta donde está el .exe.
     Para desarrollo, usa el directorio actual.
     """
-    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    if getattr(sys, 'frozen', False):
         # La aplicación está 'congelada' (ejecutable)
-        # Usar 'APPDATA' para guardar los datos de la aplicación
-        app_data_path = os.path.join(os.environ['APPDATA'], 'Bocciolo Programa')
-        
-        # Crear el directorio si no existe
-        if not os.path.exists(app_data_path):
-            os.makedirs(app_data_path)
-            
-        application_path = app_data_path
+        # Usar la carpeta del ejecutable para guardar los datos
+        application_path = os.path.dirname(sys.executable)
     else:
         # La aplicación se está ejecutando desde el código fuente
         application_path = os.path.abspath(".")
